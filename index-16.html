@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flash Media - وكالة إعلانات متكاملة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:#F5C518; --gold-dark:#C9A000;
+    --white:#FFFFFF; --dark:#0A0A0A; --dark2:#111111; --dark3:#1A1A1A;
+    --gray:#888; --light-gray:#ccc;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Cairo',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(245,197,24,0.2);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:70px;}
+  .nav-logo{display:flex;align-items:center;gap:10px;}
+  .nav-logo-text{font-weight:900;font-size:1.2rem;}
+  .nav-logo-text span{color:var(--gold);}
+  .nav-links{display:flex;gap:30px;list-style:none;}
+  .nav-links a{color:var(--light-gray);text-decoration:none;font-size:15px;font-weight:600;transition:color 0.3s;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-right{display:flex;align-items:center;gap:12px;}
+  .nav-user-info{display:none;align-items:center;gap:10px;}
+  .nav-user-info .user-name{font-size:14px;font-weight:700;color:var(--gold);}
+  .nav-btn{padding:9px 20px;border-radius:7px;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:all 0.2s;}
+  .nav-btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;border:none;}
+  .nav-btn.gold:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(245,197,24,0.4);}
+  .nav-btn.outline{background:transparent;border:1.5px solid rgba(255,255,255,0.2);color:var(--white);}
+  .nav-btn.outline:hover{border-color:var(--gold);}
+  .nav-btn.danger{background:rgba(255,50,50,0.1);border:1.5px solid rgba(255,50,50,0.3);color:#ff6464;}
+  .nav-btn.danger:hover{background:rgba(255,50,50,0.2);}
+
+  /* HERO */
+  #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding-top:70px;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(245,197,24,0.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(245,197,24,0.04) 0%,transparent 40%);}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,197,24,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,197,24,0.04) 1px,transparent 1px);background-size:60px 60px;}
+  .hero-content{position:relative;z-index:2;max-width:850px;padding:0 20px;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,197,24,0.1);border:1px solid rgba(245,197,24,0.3);color:var(--gold);padding:6px 18px;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:30px;animation:fadeInDown 0.8s ease;}
+  .hero-title{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.1;animation:fadeInUp 0.8s ease 0.2s both;}
+  .hero-title span{color:var(--gold);}
+  .hero-sub{font-size:1.2rem;color:var(--gray);margin:20px 0 40px;font-weight:400;line-height:1.7;animation:fadeInUp 0.8s ease 0.4s both;}
+  .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 0.8s ease 0.6s both;}
+  .btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;padding:16px 36px;border-radius:8px;font-weight:800;font-size:16px;cursor:pointer;border:none;transition:transform 0.2s,box-shadow 0.2s;font-family:'Cairo',sans-serif;}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(245,197,24,0.45);}
+  .btn-secondary{background:transparent;border:2px solid rgba(255,255,255,0.2);color:var(--white);padding:14px 36px;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;transition:border-color 0.3s,background 0.3s;font-family:'Cairo',sans-serif;}
+  .btn-secondary:hover{border-color:var(--gold);background:rgba(245,197,24,0.05);}
+  .hero-stats{display:flex;gap:50px;justify-content:center;margin-top:60px;animation:fadeInUp 0.8s ease 0.8s both;}
+  .stat{text-align:center;}
+  .stat-num{font-size:2.2rem;font-weight:900;color:var(--gold);font-family:'Rajdhani',sans-serif;}
+  .stat-label{font-size:13px;color:var(--gray);margin-top:2px;}
+
+  /* SECTIONS */
+  section{padding:90px 40px;}
+  .section-header{text-align:center;margin-bottom:60px;}
+  .section-tag{color:var(--gold);font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;display:block;}
+  .section-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;}
+  .section-title span{color:var(--gold);}
+  .section-desc{color:var(--gray);margin-top:12px;font-size:1rem;max-width:500px;margin-inline:auto;line-height:1.7;}
+
+  /* SERVICES */
+  #services{background:var(--dark2);}
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;max-width:1200px;margin:0 auto;}
+  .service-card{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:36px 30px;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;cursor:pointer;position:relative;overflow:hidden;}
+  .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-dark));transform:scaleX(0);transition:transform 0.3s;transform-origin:right;}
+  .service-card:hover{transform:translateY(-6px);border-color:rgba(245,197,24,0.2);box-shadow:0 20px 50px rgba(0,0,0,0.4);}
+  .service-card:hover::before{transform:scaleX(1);transform-origin:left;}
+  .service-icon{font-size:2.5rem;margin-bottom:18px;}
+  .service-name{font-size:1.2rem;font-weight:800;margin-bottom:10px;}
+  .service-desc{color:var(--gray);font-size:0.9rem;line-height:1.6;}
+  .service-price{margin-top:20px;}
+  .price-label{font-size:12px;color:var(--gray);}
+  .price-val{font-size:1.4rem;font-weight:900;color:var(--gold);font-family:'Rajdhani',sans-serif;}
+  .service-order-btn{margin-top:16px;width:100%;padding:11px;border-radius:8px;background:rgba(245,197,24,0.08);border:1px solid rgba(245,197,24,0.25);color:var(--gold);font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:background 0.2s;}
+  .service-order-btn:hover{background:rgba(245,197,24,0.18);}
+
+  /* PACKAGES */
+  #packages{background:var(--dark);}
+  .packages-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px;max-width:1100px;margin:0 auto;}
+  .pkg-card{background:var(--dark3);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:40px 30px;text-align:center;position:relative;transition:transform 0.3s;}
+  .pkg-card.featured{background:linear-gradient(160deg,#1a1500,#1a1000);border-color:var(--gold);transform:scale(1.04);}
+  .pkg-card.featured:hover{transform:scale(1.04) translateY(-6px);}
+  .pkg-card:not(.featured):hover{transform:translateY(-6px);}
+  .pkg-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;padding:4px 18px;border-radius:20px;font-size:12px;font-weight:800;}
+  .pkg-name{font-size:1.3rem;font-weight:900;margin-bottom:8px;}
+  .pkg-price{font-size:2.5rem;font-weight:900;color:var(--gold);font-family:'Rajdhani',sans-serif;}
+  .pkg-divider{height:1px;background:rgba(255,255,255,0.08);margin:24px 0;}
+  .pkg-features{list-style:none;text-align:right;margin-bottom:30px;}
+  .pkg-features li{padding:8px 0;font-size:14px;color:var(--light-gray);display:flex;gap:10px;align-items:center;}
+  .pkg-features li::before{content:'✓';color:var(--gold);font-weight:900;font-size:16px;}
+  .pkg-btn{width:100%;padding:14px;border-radius:10px;font-family:'Cairo',sans-serif;font-weight:800;font-size:15px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;}
+  .pkg-btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;color:#000;}
+  .pkg-btn.outline{background:transparent;border:2px solid rgba(255,255,255,0.15);color:var(--white);}
+  .pkg-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(245,197,24,0.3);}
+
+  /* BOOKING */
+  #booking{background:var(--dark2);}
+  .booking-container{max-width:700px;margin:0 auto;}
+  .booking-form{background:var(--dark3);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:50px 40px;}
+  .booking-locked{text-align:center;padding:60px 40px;}
+  .booking-locked .lock-icon{font-size:3rem;margin-bottom:16px;}
+  .booking-locked p{color:var(--gray);margin-bottom:28px;line-height:1.7;}
+  .booking-locked-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+  .form-group{display:flex;flex-direction:column;gap:8px;}
+  .form-group label{font-size:13px;font-weight:600;color:var(--light-gray);}
+  .form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:14px 16px;border-radius:10px;font-family:'Cairo',sans-serif;font-size:14px;transition:border-color 0.3s;outline:none;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);}
+  .form-group select option{background:#1a1a1a;}
+  .form-group textarea{resize:vertical;min-height:110px;}
+  .submit-btn{width:100%;padding:16px;margin-top:10px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;border-radius:10px;font-family:'Cairo',sans-serif;font-weight:800;font-size:16px;color:#000;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;}
+  .submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(245,197,24,0.4);}
+
+  /* MY ORDERS */
+  #myOrders{background:var(--dark);display:none;}
+  .orders-list{max-width:900px;margin:0 auto;display:grid;gap:16px;}
+  .order-row{background:var(--dark3);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+  .order-info{display:flex;flex-direction:column;gap:4px;}
+  .order-service{font-weight:800;font-size:1rem;}
+  .order-meta{font-size:13px;color:var(--gray);}
+
+  /* CONTACT */
+  #contact{background:var(--dark2);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1000px;margin:0 auto;align-items:center;}
+  .contact-info h3{font-size:1.8rem;font-weight:900;margin-bottom:20px;}
+  .contact-item{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+  .contact-icon{width:50px;height:50px;background:rgba(245,197,24,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+  .contact-text{font-size:14px;color:var(--gray);}
+  .contact-text strong{color:var(--white);display:block;font-size:15px;margin-bottom:2px;}
+  .contact-form-area{background:var(--dark3);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:40px;}
+  .contact-form-area .form-group{margin-bottom:16px;}
+
+  /* FOOTER */
+  footer{background:#050505;border-top:1px solid rgba(245,197,24,0.15);padding:50px 40px 30px;text-align:center;}
+  .footer-links{display:flex;gap:30px;justify-content:center;margin-bottom:24px;flex-wrap:wrap;}
+  .footer-links a{color:var(--gray);text-decoration:none;font-size:14px;transition:color 0.3s;}
+  .footer-links a:hover{color:var(--gold);}
+  .footer-copy{color:var(--gray);font-size:13px;}
+  .footer-copy span{color:var(--gold);}
+
+  /* MODAL OVERLAY */
+  .modal-overlay{display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;}
+  .modal-overlay.show{display:flex;}
+  .modal-box{background:var(--dark2);border:1px solid rgba(245,197,24,0.2);border-radius:22px;width:100%;max-width:460px;padding:50px 44px;position:relative;margin:20px;}
+  .modal-close{position:absolute;top:18px;left:18px;background:rgba(255,255,255,0.07);border:none;color:var(--white);width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .modal-close:hover{background:rgba(245,197,24,0.15);}
+  .modal-logo{font-size:2.5rem;margin-bottom:12px;}
+  .modal-title{font-size:1.6rem;font-weight:900;margin-bottom:6px;}
+  .modal-sub{color:var(--gray);font-size:14px;margin-bottom:28px;line-height:1.6;}
+  .auth-tabs{display:flex;background:rgba(255,255,255,0.04);border-radius:10px;padding:4px;margin-bottom:26px;}
+  .auth-tab{flex:1;padding:10px;text-align:center;border-radius:7px;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;border:none;background:transparent;color:var(--gray);transition:all 0.2s;}
+  .auth-tab.active{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;}
+  .auth-panel{display:none;}
+  .auth-panel.active{display:block;}
+  .auth-panel .form-group{margin-bottom:16px;}
+  .auth-panel .form-group input{width:100%;}
+  .auth-submit{width:100%;padding:15px;margin-top:6px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;border-radius:10px;font-family:'Cairo',sans-serif;font-weight:800;font-size:15px;color:#000;cursor:pointer;transition:all 0.2s;}
+  .auth-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(245,197,24,0.35);}
+  .auth-error{color:#ff5555;font-size:13px;margin-bottom:12px;background:rgba(255,50,50,0.08);padding:10px 14px;border-radius:8px;display:none;border:1px solid rgba(255,50,50,0.2);}
+
+  /* CONFIRM DIALOG */
+  #confirmModal{
+    display:none;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    z-index:2147483647;
+    background:rgba(0,0,0,0.88);
+    align-items:center;
+    justify-content:center;
+  }
+  .confirm-box{background:#1a1a1a;border:2px solid rgba(245,197,24,0.3);border-radius:20px;width:calc(100% - 40px);max-width:400px;padding:40px 36px;text-align:center;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.9);}
+  .confirm-icon{font-size:3rem;margin-bottom:16px;display:block;}
+  .confirm-title{font-size:1.25rem;font-weight:900;margin-bottom:8px;color:#fff;}
+  .confirm-msg{color:#888;font-size:14px;line-height:1.65;margin-bottom:28px;}
+  .confirm-btns{display:flex;gap:12px;justify-content:center;}
+  .confirm-btn{padding:12px 28px;border-radius:9px;font-family:'Cairo',sans-serif;font-weight:800;font-size:14px;cursor:pointer;transition:all 0.2s;border:none;min-width:110px;}
+  .confirm-btn.danger{background:linear-gradient(135deg,#e53935,#b71c1c);color:#fff;}
+  .confirm-btn.danger:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(220,50,50,0.4);}
+  .confirm-btn.cancel{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:#ccc;}
+  .confirm-btn.cancel:hover{background:rgba(255,255,255,0.15);}
+  .confirm-btn.gold{background:linear-gradient(135deg,#F5C518,#C9A000);color:#000;}
+  .confirm-btn.gold:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(245,197,24,0.4);}
+
+  /* EDIT USER MODAL */
+  #editUserModal{display:none;position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,0.88);backdrop-filter:blur(14px);align-items:center;justify-content:center;}
+  #editUserModal.show{display:flex;}
+  .edit-user-box{background:var(--dark2);border:1px solid rgba(245,197,24,0.2);border-radius:20px;width:100%;max-width:480px;padding:44px 40px;margin:20px;position:relative;max-height:90vh;overflow-y:auto;}
+  .edit-user-box h3{font-size:1.25rem;font-weight:900;margin-bottom:6px;}
+  .edit-user-box p{color:var(--gray);font-size:13px;margin-bottom:26px;}
+  .edit-user-box .form-group{margin-bottom:16px;}
+  .edit-user-box .form-group input{width:100%;}
+  .edit-hint{font-size:11px;color:var(--gray);margin-top:4px;}
+  .edit-save-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;border-radius:10px;font-family:'Cairo',sans-serif;font-weight:800;font-size:15px;color:#000;cursor:pointer;transition:all 0.2s;margin-top:4px;}
+  .edit-save-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(245,197,24,0.35);}
+  .edit-success{color:#00c864;font-size:13px;background:rgba(0,200,100,0.08);padding:10px 14px;border-radius:8px;display:none;border:1px solid rgba(0,200,100,0.2);margin-bottom:14px;}
+  .edit-error-msg{color:#ff5555;font-size:13px;background:rgba(255,50,50,0.08);padding:10px 14px;border-radius:8px;display:none;border:1px solid rgba(255,50,50,0.2);margin-bottom:14px;}
+
+  /* EDIT SERVICE / PACKAGE MODAL */
+  #editItemModal{display:none;position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,0.88);backdrop-filter:blur(14px);align-items:center;justify-content:center;}
+  #editItemModal.show{display:flex;}
+  .edit-item-box{background:var(--dark2);border:1px solid rgba(245,197,24,0.2);border-radius:20px;width:100%;max-width:520px;padding:44px 40px;margin:20px;position:relative;max-height:90vh;overflow-y:auto;}
+  .edit-item-box h3{font-size:1.2rem;font-weight:900;margin-bottom:6px;}
+  .edit-item-box p{color:var(--gray);font-size:13px;margin-bottom:22px;}
+  .edit-item-box .form-group{margin-bottom:15px;}
+  .edit-item-box .form-group input,.edit-item-box .form-group select,.edit-item-box .form-group textarea{width:100%;}
+  .edit-item-box .form-group textarea{min-height:80px;resize:vertical;}
+
+  /* ADMIN */
+  #adminModal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);backdrop-filter:blur(10px);overflow-y:auto;}
+  .admin-panel{max-width:1150px;margin:40px auto;padding:0 20px 60px;}
+  .admin-header{display:flex;align-items:center;justify-content:space-between;padding:24px 30px;background:var(--dark2);border:1px solid rgba(245,197,24,0.2);border-radius:16px;margin-bottom:24px;}
+  .admin-title{font-size:1.4rem;font-weight:900;}
+  .admin-title span{color:var(--gold);}
+  .close-btn{background:rgba(255,255,255,0.08);border:none;color:var(--white);width:38px;height:38px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+  .close-btn:hover{background:rgba(245,197,24,0.2);}
+  .admin-tabs{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;}
+  .tab-btn{padding:10px 22px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:var(--gray);font-family:'Cairo',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+  .tab-btn.active{background:var(--gold);color:#000;border-color:var(--gold);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .admin-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:28px;}
+  .admin-card h3{font-size:1.1rem;font-weight:800;margin-bottom:20px;color:var(--gold);}
+  .items-table{width:100%;border-collapse:collapse;}
+  .items-table th{background:rgba(245,197,24,0.08);color:var(--gold);font-size:13px;padding:12px 14px;text-align:right;border-bottom:1px solid rgba(255,255,255,0.05);}
+  .items-table td{padding:12px 14px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--light-gray);}
+  .items-table tr:hover td{background:rgba(255,255,255,0.02);}
+  .badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+  .badge-new{background:rgba(245,197,24,0.15);color:var(--gold);}
+  .badge-done{background:rgba(0,200,100,0.15);color:#00c864;}
+  .badge-pending{background:rgba(255,100,50,0.15);color:#ff6432;}
+  .action-btn{padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer;border:none;font-family:'Cairo',sans-serif;font-weight:700;margin-inline-start:4px;transition:opacity 0.2s;}
+  .action-btn:hover{opacity:0.8;}
+  .action-btn.edit{background:rgba(245,197,24,0.15);color:var(--gold);}
+  .action-btn.delete{background:rgba(255,50,50,0.15);color:#ff4444;}
+  .action-btn.blue{background:rgba(80,140,255,0.15);color:#6eb0ff;}
+  .add-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+  .add-form input,.add-form select,.add-form textarea{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--white);padding:12px 14px;border-radius:8px;font-family:'Cairo',sans-serif;font-size:13px;outline:none;}
+  .add-form input:focus,.add-form select:focus{border-color:var(--gold);}
+  .add-form textarea{grid-column:1/-1;}
+  .add-form select option{background:#1a1a1a;}
+  .add-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;color:#000;padding:12px 28px;border-radius:8px;font-family:'Cairo',sans-serif;font-weight:800;font-size:14px;cursor:pointer;}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+  .stat-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:22px;text-align:center;}
+  .stat-card .num{font-size:2rem;font-weight:900;color:var(--gold);font-family:'Rajdhani',sans-serif;}
+  .stat-card .lbl{font-size:12px;color:var(--gray);margin-top:4px;}
+
+  /* PAYMENT MODAL */
+  #paymentModal{display:none;position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,0.92);backdrop-filter:blur(16px);align-items:center;justify-content:center;}
+  #paymentModal.show{display:flex;}
+  .payment-box{background:var(--dark2);border:1px solid rgba(245,197,24,0.25);border-radius:24px;width:100%;max-width:520px;margin:20px;position:relative;overflow:hidden;max-height:92vh;overflow-y:auto;}
+  .payment-header{background:linear-gradient(135deg,rgba(245,197,24,0.12),rgba(245,197,24,0.04));border-bottom:1px solid rgba(245,197,24,0.15);padding:28px 36px 24px;}
+  .payment-header h3{font-size:1.25rem;font-weight:900;margin-bottom:4px;}
+  .payment-header p{color:var(--gray);font-size:13px;}
+  .payment-body{padding:28px 36px;}
+  .payment-summary{background:rgba(245,197,24,0.06);border:1px solid rgba(245,197,24,0.15);border-radius:12px;padding:18px 20px;margin-bottom:22px;}
+  .payment-summary-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;}
+  .payment-summary-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.05);}
+  .payment-summary-label{font-size:13px;color:var(--gray);}
+  .payment-summary-val{font-size:13px;font-weight:700;}
+  .payment-total{font-size:1.4rem !important;font-weight:900 !important;color:var(--gold) !important;font-family:'Rajdhani',sans-serif;}
+  .payment-methods{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+  .pay-method-btn{background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 12px;text-align:center;cursor:pointer;transition:all 0.2s;font-family:'Cairo',sans-serif;}
+  .pay-method-btn:hover,.pay-method-btn.selected{border-color:var(--gold);background:rgba(245,197,24,0.08);}
+  .pay-method-btn .pm-icon{font-size:1.8rem;margin-bottom:6px;}
+  .pay-method-btn .pm-name{font-size:13px;font-weight:700;color:var(--white);}
+  .pay-method-btn .pm-sub{font-size:11px;color:var(--gray);margin-top:2px;}
+  .paymob-iframe-wrap{width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#fff;margin-bottom:16px;}
+  .paymob-iframe-wrap iframe{width:100%;height:500px;border:none;display:block;}
+  .payment-loading{text-align:center;padding:50px 20px;}
+  .payment-loading .spin{font-size:2.5rem;animation:spin 1s linear infinite;display:inline-block;margin-bottom:14px;}
+  .payment-loading p{color:var(--gray);font-size:14px;}
+  .payment-error-box{background:rgba(255,50,50,0.08);border:1px solid rgba(255,50,50,0.2);border-radius:10px;padding:14px 18px;color:#ff6464;font-size:13px;margin-bottom:16px;display:none;}
+  .pay-proceed-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;border-radius:12px;font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#000;cursor:pointer;transition:all 0.2s;}
+  .pay-proceed-btn:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(245,197,24,0.4);}
+  .pay-proceed-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+  .payment-secure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;color:var(--gray);font-size:12px;}
+  .payment-success-box{text-align:center;padding:40px 30px;}
+  .payment-success-box .success-icon{font-size:4rem;margin-bottom:16px;}
+  .payment-success-box h3{font-size:1.4rem;font-weight:900;margin-bottom:8px;color:#00c864;}
+  .payment-success-box p{color:var(--gray);font-size:14px;line-height:1.7;}
+  @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#000;padding:14px 30px;border-radius:50px;font-weight:800;font-size:14px;z-index:999999;transition:transform 0.4s ease;box-shadow:0 8px 30px rgba(245,197,24,0.4);white-space:nowrap;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+
+  @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+  @media(max-width:768px){
+    nav{padding:0 16px;}
+    .nav-links{display:none;}
+    section{padding:60px 20px;}
+    .form-row{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:25px;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .add-form{grid-template-columns:1fr;}
+    .booking-form{padding:30px 20px;}
+    .modal-box,.edit-user-box{padding:36px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span style="font-size:1.8rem">⚡</span>
+    <span class="nav-logo-text">FLASH <span>MEDIA</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">الخدمات</a></li>
+    <li><a href="#packages">الباقات</a></li>
+    <li><a href="#booking">احجز الآن</a></li>
+    <li><a href="#contact">تواصل معنا</a></li>
+  </ul>
+  <div class="nav-right">
+    <div id="navGuest" style="display:flex;gap:10px">
+      <button class="nav-btn outline" onclick="openAuth('login')">تسجيل دخول</button>
+      <button class="nav-btn gold" onclick="openAuth('register')">إنشاء حساب</button>
+    </div>
+    <div id="navUser" class="nav-user-info">
+      <span class="user-name" id="navUserName"></span>
+      <button class="nav-btn outline" id="navDashBtn" onclick="openDashboard()" style="display:none">⚙️ لوحة التحكم</button>
+      <button class="nav-btn danger" onclick="confirmLogout()">خروج</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ وكالة إعلانات متكاملة</div>
+    <h1 class="hero-title">نُضيء <span>علامتك التجارية</span><br>بسرعة البرق</h1>
+    <p class="hero-sub">Flash Media — وكالة إعلانية رائدة تقدم حلول تسويقية إبداعية متكاملة<br>من تصميم الهوية البصرية إلى إدارة الحملات الرقمية</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="smoothScroll('packages')">استكشف الباقات</button>
+      <button class="btn-secondary" onclick="smoothScroll('booking')">احجز استشارة مجانية</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">200+</div><div class="stat-label">عميل راضٍ</div></div>
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">مشروع منجز</div></div>
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">سنوات خبرة</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header">
+    <span class="section-tag">ما نقدمه</span>
+    <h2 class="section-title">خدماتنا <span>الإعلانية</span></h2>
+    <p class="section-desc">نقدم حزمة متكاملة من خدمات التسويق والإعلان المصممة لتعزيز حضورك في السوق</p>
+  </div>
+  <div class="services-grid" id="servicesGrid"></div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="section-header">
+    <span class="section-tag">اختر ما يناسبك</span>
+    <h2 class="section-title">باقاتنا <span>المميزة</span></h2>
+    <p class="section-desc">باقات مصممة لتناسب جميع احتياجات الأعمال</p>
+  </div>
+  <div class="packages-grid" id="packagesGrid"></div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="section-header">
+    <span class="section-tag">ابدأ رحلتك</span>
+    <h2 class="section-title">احجز <span>خدمتك الآن</span></h2>
+    <p class="section-desc">سجّل دخولك لإتمام الحجز وتتبع طلباتك بسهولة</p>
+  </div>
+  <div class="booking-container">
+    <div class="booking-form" id="bookingFormWrap"></div>
+  </div>
+</section>
+
+<!-- MY ORDERS -->
+<section id="myOrders">
+  <div class="section-header">
+    <span class="section-tag">حجوزاتي</span>
+    <h2 class="section-title">طلباتي <span>السابقة</span></h2>
+  </div>
+  <div class="orders-list" id="ordersList"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-tag">نحن هنا</span>
+    <h2 class="section-title">تواصل <span>معنا</span></h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>كيف يمكننا<br><span style="color:var(--gold)">مساعدتك؟</span></h3>
+      <p style="color:var(--gray);margin-bottom:30px;line-height:1.7">فريقنا جاهز للرد على استفساراتك وتقديم أفضل الحلول الإعلانية</p>
+      <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><strong>اتصل بنا</strong>01559891457</div></div>
+      <div class="contact-item"><div class="contact-icon">💬</div><div class="contact-text"><strong>واتساب</strong>01559891457</div></div>
+      <div class="contact-item"><div class="contact-icon">📧</div><div class="contact-text"><strong>البريد الإلكتروني</strong>info@flashmedia.com</div></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><strong>الموقع</strong>مصر</div></div>
+    </div>
+    <div class="contact-form-area">
+      <div class="form-group"><label>الاسم</label><input type="text" id="ctName" placeholder="اسمك" /></div>
+      <div class="form-group"><label>الهاتف</label><input type="tel" id="ctPhone" placeholder="01xxxxxxxxx" /></div>
+      <div class="form-group"><label>الرسالة</label><textarea id="ctMsg" placeholder="كيف يمكننا مساعدتك؟" style="min-height:90px"></textarea></div>
+      <button class="submit-btn" onclick="submitContact()">إرسال الرسالة ✉️</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="font-size:2rem">⚡</div>
+  <div style="font-size:1.4rem;font-weight:900;margin:8px 0">FLASH <span style="color:var(--gold)">MEDIA</span></div>
+  <div class="footer-links">
+    <a href="#services">الخدمات</a><a href="#packages">الباقات</a>
+    <a href="#booking">الحجز</a><a href="#contact">تواصل</a>
+  </div>
+  <p class="footer-copy">© 2024 Flash Media. جميع الحقوق محفوظة. <span>📞 01559891457</span></p>
+</footer>
+
+<!-- ===================== AUTH MODAL ===================== -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAuth()">✕</button>
+    <div class="modal-logo">⚡</div>
+    <div class="modal-title">مرحباً بك</div>
+    <div class="modal-sub">سجّل دخولك للمتابعة وحجز خدماتك</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">تسجيل دخول</button>
+      <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">إنشاء حساب</button>
+    </div>
+    <div class="auth-panel active" id="panelLogin">
+      <div class="auth-error" id="loginError"></div>
+      <div class="form-group"><label>البريد الإلكتروني أو اسم المستخدم</label><input type="text" id="loginEmail" placeholder="admin أو email@example.com" /></div>
+      <div class="form-group"><label>كلمة المرور</label><input type="password" id="loginPass" placeholder="••••••" /></div>
+      <button class="auth-submit" onclick="doLogin()">دخول →</button>
+    </div>
+    <div class="auth-panel" id="panelRegister">
+      <div class="auth-error" id="registerError"></div>
+      <div class="form-group"><label>الاسم الكامل</label><input type="text" id="regName" placeholder="اسمك الكامل" /></div>
+      <div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="regEmail" placeholder="email@example.com" /></div>
+      <div class="form-group"><label>رقم الهاتف</label><input type="tel" id="regPhone" placeholder="01xxxxxxxxx" /></div>
+      <div class="form-group"><label>كلمة المرور</label><input type="password" id="regPass" placeholder="6 أحرف على الأقل" /></div>
+      <button class="auth-submit" onclick="doRegister()">إنشاء الحساب ✓</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===================== EDIT USER MODAL ===================== -->
+<div id="editUserModal">
+  <div class="edit-user-box">
+    <button class="modal-close" onclick="closeEditUser()">✕</button>
+    <div style="font-size:1.8rem;margin-bottom:12px">✏️</div>
+    <h3>تعديل بيانات العميل</h3>
+    <p>يمكنك تعديل جميع البيانات بما فيها كلمة المرور</p>
+    <div class="edit-success" id="editSuccess">✅ تم حفظ التعديلات بنجاح</div>
+    <div class="edit-error-msg" id="editErrMsg"></div>
+    <input type="hidden" id="editUserId" />
+    <div class="form-group"><label>الاسم الكامل</label><input type="text" id="euName" placeholder="الاسم الكامل" /></div>
+    <div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="euEmail" placeholder="email@example.com" /></div>
+    <div class="form-group"><label>رقم الهاتف</label><input type="tel" id="euPhone" placeholder="01xxxxxxxxx" /></div>
+    <div class="form-group">
+      <label>كلمة المرور الجديدة</label>
+      <input type="text" id="euPass" placeholder="اتركه فارغاً إذا لا تريد تغييره" />
+      <span class="edit-hint">إذا تركته فارغاً لن يتغير الباسورد الحالي</span>
+    </div>
+    <button class="edit-save-btn" onclick="saveEditUser()">💾 حفظ التعديلات</button>
+  </div>
+</div>
+
+<!-- ===================== EDIT SERVICE/PACKAGE MODAL ===================== -->
+<div id="editItemModal">
+  <div class="edit-item-box">
+    <button class="modal-close" onclick="closeEditItem()">✕</button>
+    <div style="font-size:1.8rem;margin-bottom:10px" id="editItemIcon">✏️</div>
+    <h3 id="editItemTitle">تعديل</h3>
+    <p id="editItemSub">عدّل البيانات ثم اضغط حفظ</p>
+    <div class="edit-success" id="editItemSuccess">✅ تم الحفظ بنجاح</div>
+    <div class="edit-error-msg" id="editItemErr"></div>
+    <input type="hidden" id="editItemType" /> <!-- 'service' or 'package' -->
+    <input type="hidden" id="editItemIdx" />
+
+    <!-- SERVICE FIELDS -->
+    <div id="editServiceFields">
+      <div class="form-group"><label>أيقونة الخدمة</label><input type="text" id="eiSvcIcon" placeholder="مثال: 🎨" /></div>
+      <div class="form-group"><label>اسم الخدمة</label><input type="text" id="eiSvcName" placeholder="اسم الخدمة" /></div>
+      <div class="form-group"><label>السعر</label><input type="text" id="eiSvcPrice" placeholder="مثال: يبدأ من 500 جنيه" /></div>
+      <div class="form-group"><label>الوصف</label><textarea id="eiSvcDesc" placeholder="وصف الخدمة"></textarea></div>
+    </div>
+
+    <!-- PACKAGE FIELDS -->
+    <div id="editPackageFields" style="display:none">
+      <div class="form-group"><label>اسم الباقة</label><input type="text" id="eiPkgName" placeholder="اسم الباقة" /></div>
+      <div class="form-group"><label>السعر (بالجنيه)</label><input type="text" id="eiPkgPrice" placeholder="مثال: 1999" /></div>
+      <div class="form-group"><label>المميزات (افصل بفاصلة)</label><textarea id="eiPkgFeatures" placeholder="تصميم شعار, إدارة سوشيال, ..."></textarea></div>
+      <div class="form-group"><label>نوع الباقة</label>
+        <select id="eiPkgFeatured" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:14px 16px;border-radius:10px;font-family:'Cairo',sans-serif;font-size:14px;outline:none;">
+          <option value="0">باقة عادية</option>
+          <option value="1">⭐ مميزة (موصى بها)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="edit-save-btn" onclick="saveEditItem()">💾 حفظ التعديلات</button>
+  </div>
+</div>
+
+<!-- ===================== ADMIN MODAL ===================== -->
+<div id="adminModal">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <div class="admin-title">⚡ لوحة تحكم <span>Flash Media</span></div>
+      <button class="close-btn" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="stats-grid" id="adminStats"></div>
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="switchTab(event,'bookings')">📋 الحجوزات</button>
+      <button class="tab-btn" onclick="switchTab(event,'messages')">💬 الرسائل</button>
+      <button class="tab-btn" onclick="switchTab(event,'users')">👥 المستخدمون</button>
+      <button class="tab-btn" onclick="switchTab(event,'services')">🛠 الخدمات</button>
+      <button class="tab-btn" onclick="switchTab(event,'packages')">📦 الباقات</button>
+    </div>
+
+    <div id="tab-bookings" class="tab-content active">
+      <div class="admin-card"><h3>📋 الحجوزات الواردة</h3>
+        <div style="overflow-x:auto"><table class="items-table"><thead><tr><th>#</th><th>العميل</th><th>الهاتف</th><th>الخدمة</th><th>الباقة</th><th>المبلغ</th><th>الدفع</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="bookingsTbody"></tbody></table></div>
+      </div>
+    </div>
+
+    <div id="tab-messages" class="tab-content">
+      <div class="admin-card"><h3>💬 رسائل التواصل</h3>
+        <div style="overflow-x:auto"><table class="items-table"><thead><tr><th>#</th><th>الاسم</th><th>الهاتف</th><th>الرسالة</th><th>إجراء</th></tr></thead><tbody id="messagesTbody"></tbody></table></div>
+      </div>
+    </div>
+
+    <div id="tab-users" class="tab-content">
+      <div class="admin-card"><h3>👥 قائمة العملاء المسجلين</h3>
+        <div style="overflow-x:auto"><table class="items-table"><thead><tr><th>#</th><th>الاسم</th><th>البريد</th><th>الهاتف</th><th>تاريخ التسجيل</th><th>إجراء</th></tr></thead><tbody id="usersTbody"></tbody></table></div>
+      </div>
+    </div>
+
+    <div id="tab-services" class="tab-content">
+      <div class="admin-card"><h3>➕ إضافة خدمة جديدة</h3>
+        <div class="add-form">
+          <input type="text" id="svcName" placeholder="اسم الخدمة" />
+          <input type="text" id="svcPrice" placeholder="السعر" />
+          <input type="text" id="svcIcon" placeholder="أيقونة (مثال: 📱)" />
+          <textarea id="svcDesc" placeholder="وصف الخدمة"></textarea>
+        </div>
+        <button class="add-btn" onclick="addService()">➕ إضافة الخدمة</button>
+        <div style="margin-top:24px;overflow-x:auto"><table class="items-table"><thead><tr><th>الأيقونة</th><th>الاسم</th><th>الوصف</th><th>السعر</th><th>إجراء</th></tr></thead><tbody id="servicesTbody"></tbody></table></div>
+      </div>
+    </div>
+
+    <div id="tab-packages" class="tab-content">
+      <div class="admin-card"><h3>➕ إضافة باقة جديدة</h3>
+        <div class="add-form">
+          <input type="text" id="pkgName" placeholder="اسم الباقة" />
+          <input type="text" id="pkgPrice" placeholder="السعر بالجنيه" />
+          <input type="text" id="pkgFeatures" placeholder="المميزات مفصولة بفاصلة" />
+          <select id="pkgFeatured"><option value="0">باقة عادية</option><option value="1">⭐ مميزة (موصى بها)</option></select>
+        </div>
+        <button class="add-btn" onclick="addPackage()">➕ إضافة الباقة</button>
+        <div style="margin-top:24px;overflow-x:auto"><table class="items-table"><thead><tr><th>الاسم</th><th>السعر</th><th>المميزات</th><th>مميزة</th><th>إجراء</th></tr></thead><tbody id="packagesTbody"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PAYMENT MODAL ===================== -->
+<div id="paymentModal">
+  <div class="payment-box">
+    <button class="modal-close" onclick="closePayment()" style="top:16px;left:16px">✕</button>
+
+    <!-- STEP 1: Choose method -->
+    <div id="payStep1">
+      <div class="payment-header">
+        <div style="font-size:1.6rem;margin-bottom:8px">💳</div>
+        <h3>إتمام الدفع</h3>
+        <p>اختر طريقة الدفع المناسبة لك</p>
+      </div>
+      <div class="payment-body">
+        <div class="payment-summary" id="paymentSummary"></div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--light-gray)">طريقة الدفع</div>
+        <div class="payment-methods">
+          <div class="pay-method-btn selected" id="pmCard" onclick="selectPayMethod('card')">
+            <div class="pm-icon">💳</div>
+            <div class="pm-name">بطاقة بنكية</div>
+            <div class="pm-sub">Visa / Mastercard</div>
+          </div>
+          <div class="pay-method-btn" id="pmWallet" onclick="selectPayMethod('wallet')">
+            <div class="pm-icon">📱</div>
+            <div class="pm-name">محفظة / كاش</div>
+            <div class="pm-sub">Vodafone · Orange · Etisalat · Fawry</div>
+          </div>
+        </div>
+        <!-- Wallet phone input -->
+        <div id="walletPhoneWrap" style="display:none;margin-bottom:18px">
+          <div class="form-group">
+            <label>رقم المحفظة</label>
+            <input type="tel" id="walletPhone" placeholder="01xxxxxxxxx" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:14px 16px;border-radius:10px;font-family:'Cairo',sans-serif;font-size:14px;outline:none;width:100%;" />
+          </div>
+        </div>
+        <div class="payment-error-box" id="paymentErr"></div>
+        <button class="pay-proceed-btn" id="payProceedBtn" onclick="proceedPayment()">المتابعة للدفع 🔒</button>
+        <div class="payment-secure">🔒 مدفوعات آمنة بواسطة <strong style="color:var(--gold)">Paymob</strong> · مشفرة بـ SSL</div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Loading -->
+    <div id="payStep2" style="display:none">
+      <div class="payment-loading">
+        <div class="spin">⚡</div>
+        <p id="payLoadingMsg">جاري تجهيز بوابة الدفع...</p>
+      </div>
+    </div>
+
+    <!-- STEP 3: iFrame -->
+    <div id="payStep3" style="display:none">
+      <div class="payment-header">
+        <h3>أدخل بيانات الدفع</h3>
+        <p>ادفع بأمان عبر بوابة Paymob المشفرة</p>
+      </div>
+      <div class="payment-body" style="padding:16px">
+        <div class="paymob-iframe-wrap">
+          <iframe id="paymobIframe" src="" title="Paymob Payment"></iframe>
+        </div>
+        <button onclick="closePayment()" style="width:100%;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--gray);border-radius:10px;font-family:'Cairo',sans-serif;font-size:14px;cursor:pointer;">← العودة وإلغاء الدفع</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Success -->
+    <div id="payStep4" style="display:none">
+      <div class="payment-success-box">
+        <div class="success-icon">✅</div>
+        <h3>تم الدفع بنجاح!</h3>
+        <p>تم استلام دفعتك بنجاح وتم تأكيد حجزك.<br>سيتواصل معك فريقنا قريباً.</p>
+        <div id="paySuccessDetails" style="margin:20px 0;background:rgba(0,200,100,0.06);border:1px solid rgba(0,200,100,0.15);border-radius:12px;padding:16px;font-size:13px;color:var(--light-gray)"></div>
+        <button class="pay-proceed-btn" onclick="closePayment()">إغلاق</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ STORE ============
+let store = {
+  services:[
+    {id:1,icon:'🎨',name:'تصميم الهوية البصرية',desc:'شعارات احترافية وهوية بصرية متكاملة تعكس روح علامتك التجارية',price:'يبدأ من 500 جنيه'},
+    {id:2,icon:'📱',name:'إدارة السوشيال ميديا',desc:'إدارة كاملة لحساباتك على منصات التواصل الاجتماعي بمحتوى إبداعي',price:'يبدأ من 1200 جنيه/شهر'},
+    {id:3,icon:'🎬',name:'إنتاج فيديو وموشن جرافيك',desc:'فيديوهات إعلانية ومشاريع موشن جرافيك احترافية',price:'يبدأ من 2000 جنيه'},
+    {id:4,icon:'📢',name:'حملات إعلانية مدفوعة',desc:'إدارة حملات Meta Ads وGoogle Ads بأعلى معدل عائد',price:'يبدأ من 800 جنيه/شهر'},
+    {id:5,icon:'🌐',name:'تصميم وتطوير المواقع',desc:'مواقع إلكترونية احترافية وسريعة تناسب هويتك التجارية',price:'يبدأ من 3000 جنيه'},
+    {id:6,icon:'📸',name:'التصوير والإنتاج الإعلامي',desc:'جلسات تصوير احترافية للمنتجات والأشخاص والفعاليات',price:'يبدأ من 700 جنيه'},
+  ],
+  packages:[
+    {id:1,name:'الباقة الأساسية',price:'999',features:['تصميم شعار احترافي','بطاقة أعمال','صفحة فيسبوك احترافية','4 تصاميم سوشيال/شهر'],featured:false},
+    {id:2,name:'الباقة الاحترافية',price:'2499',features:['هوية بصرية كاملة','إدارة 3 منصات سوشيال','12 تصميم/شهر','حملة إعلانية مدفوعة','تقارير شهرية'],featured:true},
+    {id:3,name:'الباقة المتكاملة',price:'4999',features:['كل ما في الاحترافية','موقع إلكتروني','فيديو إعلاني','تصوير شهري','دعم أولوية 24/7'],featured:false},
+  ],
+  bookings:[],
+  messages:[],
+  users:[{id:1,name:'المشرف',email:'admin',phone:'01559891457',pass:'flash2024',role:'admin',date:'2024-01-01'}],
+  nextId:100
+};
+function loadStore(){try{const s=localStorage.getItem('flashmedia_v3');if(s)store=JSON.parse(s);}catch(e){}}
+function saveStore(){try{localStorage.setItem('flashmedia_v3',JSON.stringify(store));}catch(e){}}
+loadStore();
+
+let currentUser=null;
+let pendingService=null;
+let pendingPackage=null;
+
+// ============ HELPERS ============
+function smoothScroll(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
+
+// ============ CONFIRM DIALOG ============
+let _confirmAction=null;
+function showConfirm({icon='⚠️',title='هل أنت متأكد؟',msg='',btnText='تأكيد',btnClass='danger',onConfirm}){
+  // Build fresh confirm element every time — bypasses ALL stacking context issues
+  let old=document.getElementById('confirmModal');
+  if(old) old.remove();
+
+  const el=document.createElement('div');
+  el.id='confirmModal';
+  el.style.cssText='display:flex;position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483647;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;font-family:Cairo,sans-serif;';
+  el.innerHTML=`
+    <div style="background:#1a1a1a;border:2px solid rgba(245,197,24,0.35);border-radius:20px;width:calc(100%-40px);max-width:400px;padding:40px 32px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,0.95);margin:20px;direction:rtl;">
+      <div style="font-size:3rem;margin-bottom:14px">${icon}</div>
+      <div style="font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:10px">${title}</div>
+      <div style="font-size:14px;color:#888;line-height:1.65;margin-bottom:28px">${msg}</div>
+      <div style="display:flex;gap:12px;justify-content:center">
+        <button onclick="closeConfirm()" style="padding:12px 28px;border-radius:9px;font-family:Cairo,sans-serif;font-weight:800;font-size:14px;cursor:pointer;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#ccc;min-width:100px">إلغاء</button>
+        <button id="confirmOkBtn" onclick="runConfirmAction()" style="padding:12px 28px;border-radius:9px;font-family:Cairo,sans-serif;font-weight:800;font-size:14px;cursor:pointer;border:none;min-width:100px;background:linear-gradient(135deg,#e53935,#b71c1c);color:#fff">${btnText}</button>
+      </div>
+    </div>`;
+
+  // Style ok button based on class
+  const okBtn=el.querySelector('#confirmOkBtn');
+  if(btnClass==='gold') okBtn.style.background='linear-gradient(135deg,#F5C518,#C9A000)';
+  if(btnClass==='gold') okBtn.style.color='#000';
+
+  _confirmAction=onConfirm;
+  document.body.appendChild(el);
+}
+function closeConfirm(){
+  const el=document.getElementById('confirmModal');
+  if(el) el.remove();
+  _confirmAction=null;
+}
+function runConfirmAction(){
+  const action=_confirmAction;
+  closeConfirm();
+  if(action) action();
+}
+
+// ============ AUTH ============
+function openAuth(tab='login',svc=null,pkg=null){
+  pendingService=svc; pendingPackage=pkg;
+  document.getElementById('authModal').classList.add('show');
+  switchAuthTab(tab);
+}
+function closeAuth(){document.getElementById('authModal').classList.remove('show');}
+function switchAuthTab(tab){
+  document.getElementById('panelLogin').classList.toggle('active',tab==='login');
+  document.getElementById('panelRegister').classList.toggle('active',tab==='register');
+  document.getElementById('tabLogin').classList.toggle('active',tab==='login');
+  document.getElementById('tabRegister').classList.toggle('active',tab==='register');
+  document.getElementById('loginError').style.display='none';
+  document.getElementById('registerError').style.display='none';
+}
+function doLogin(){
+  const em=document.getElementById('loginEmail').value.trim();
+  const ps=document.getElementById('loginPass').value;
+  const user=store.users.find(u=>(u.email===em||u.name===em)&&u.pass===ps);
+  if(!user){showAuthError('login','❌ البيانات غير صحيحة، تحقق من البريد وكلمة المرور');return;}
+  currentUser=user;
+  closeAuth();
+  updateNavUI();
+  showToast('👋 أهلاً '+user.name+'!');
+  if(pendingService||pendingPackage){setTimeout(()=>{smoothScroll('booking');pendingService=null;pendingPackage=null;},400);}
+  renderBookingSection();
+  renderMyOrders();
+}
+function doRegister(){
+  const name=document.getElementById('regName').value.trim();
+  const email=document.getElementById('regEmail').value.trim();
+  const phone=document.getElementById('regPhone').value.trim();
+  const pass=document.getElementById('regPass').value;
+  if(!name||!email||!pass){showAuthError('register','⚠️ يرجى ملء جميع الحقول المطلوبة');return;}
+  if(pass.length<6){showAuthError('register','⚠️ كلمة المرور يجب أن تكون 6 أحرف على الأقل');return;}
+  if(store.users.find(u=>u.email===email)){showAuthError('register','❌ هذا البريد الإلكتروني مسجل بالفعل');return;}
+  const nu={id:store.nextId++,name,email,phone,pass,role:'client',date:new Date().toLocaleDateString('ar-EG')};
+  store.users.push(nu);saveStore();currentUser=nu;
+  closeAuth();updateNavUI();
+  showToast('✅ تم إنشاء حسابك بنجاح! أهلاً '+name);
+  renderBookingSection();renderMyOrders();
+}
+function showAuthError(panel,msg){
+  const el=document.getElementById(panel==='login'?'loginError':'registerError');
+  el.textContent=msg;el.style.display='block';
+}
+
+// ============ LOGOUT WITH CONFIRM ============
+function confirmLogout(){
+  showConfirm({
+    icon:'👋',
+    title:'تسجيل الخروج',
+    msg:'هل تريد فعلاً تسجيل الخروج من حسابك؟',
+    btnText:'نعم، خروج',
+    btnClass:'danger',
+    onConfirm:doLogout
+  });
+}
+function doLogout(){
+  currentUser=null;updateNavUI();renderBookingSection();
+  document.getElementById('myOrders').style.display='none';
+  showToast('👋 تم تسجيل الخروج بنجاح');
+}
+function updateNavUI(){
+  const li=!!currentUser;
+  document.getElementById('navGuest').style.display=li?'none':'flex';
+  document.getElementById('navUser').style.display=li?'flex':'none';
+  if(li){
+    document.getElementById('navUserName').textContent='👤 '+currentUser.name;
+    document.getElementById('navDashBtn').style.display=currentUser.role==='admin'?'inline-block':'none';
+  }
+}
+
+// ============ BOOKING ============
+function renderBookingSection(){
+  const wrap=document.getElementById('bookingFormWrap');
+  if(!currentUser){
+    wrap.innerHTML=`
+      <div class="booking-locked">
+        <div class="lock-icon">🔐</div>
+        <h3 style="font-size:1.4rem;font-weight:900;margin-bottom:12px">سجّل دخولك لإتمام الحجز</h3>
+        <p>لحجز الخدمات وتتبع طلباتك يجب تسجيل الدخول أولاً أو إنشاء حساب مجاني</p>
+        <div class="booking-locked-btns">
+          <button class="btn-primary" onclick="openAuth('login')">تسجيل دخول</button>
+          <button class="btn-secondary" onclick="openAuth('register')">إنشاء حساب مجاني</button>
+        </div>
+      </div>`;
+  } else {
+    wrap.innerHTML=`
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.07)">
+        <div style="width:44px;height:44px;background:rgba(245,197,24,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem">👤</div>
+        <div><div style="font-weight:800">${currentUser.name}</div><div style="font-size:12px;color:var(--gray)">${currentUser.email}</div></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>الاسم الكامل</label><input type="text" id="bkName" value="${currentUser.name}" /></div>
+        <div class="form-group"><label>رقم الهاتف</label><input type="tel" id="bkPhone" value="${currentUser.phone||''}" placeholder="01xxxxxxxxx" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>الخدمة المطلوبة</label>
+          <select id="bkService"><option value="">اختر الخدمة</option>${store.services.map(s=>`<option>${s.name}</option>`).join('')}</select>
+        </div>
+        <div class="form-group"><label>الباقة</label>
+          <select id="bkPackage"><option value="">اختر الباقة</option>${store.packages.map(p=>`<option>${p.name}</option>`).join('')}</select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>المبلغ المراد دفعه (بالجنيه)</label><input type="number" id="bkAmount" placeholder="مثال: 1500" min="1" /></div>
+        <div class="form-group" style="justify-content:flex-end;padding-top:8px">
+          <span style="font-size:12px;color:var(--gray);line-height:1.5">اختياري — اتركه فارغاً للدفع لاحقاً بعد التواصل مع الفريق</span>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:18px"><label>تفاصيل إضافية</label><textarea id="bkNote" placeholder="أخبرنا المزيد عن مشروعك..."></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
+        <button class="submit-btn" style="margin-top:0" onclick="submitBooking(false)">📩 إرسال الحجز فقط</button>
+        <button class="submit-btn" style="margin-top:0;background:linear-gradient(135deg,#00b96b,#007a45)" onclick="submitBooking(true)">💳 إرسال + دفع الآن</button>
+      </div>`;
+    if(pendingService){setTimeout(()=>{const s=document.getElementById('bkService');if(s)s.value=pendingService;},100);}
+    if(pendingPackage){setTimeout(()=>{const s=document.getElementById('bkPackage');if(s)s.value=pendingPackage;},100);}
+  }
+}
+function submitBooking(withPayment=false){
+  const name=document.getElementById('bkName').value.trim();
+  const phone=document.getElementById('bkPhone').value.trim();
+  const service=document.getElementById('bkService').value;
+  const pkg=document.getElementById('bkPackage').value;
+  const note=document.getElementById('bkNote').value.trim();
+  const amountRaw=document.getElementById('bkAmount').value.trim();
+  const amount=parseFloat(amountRaw)||0;
+  if(!name||!phone){showToast('⚠️ يرجى ملء الاسم ورقم الهاتف');return;}
+  if(withPayment && amount<1){showToast('⚠️ أدخل المبلغ المراد دفعه أولاً');return;}
+  const booking={id:store.nextId++,userId:currentUser.id,name,phone,email:currentUser.email,service,pkg,note,amount:amount||0,status:withPayment?'في انتظار الدفع':'جديد',date:new Date().toLocaleDateString('ar-EG'),paid:false};
+  store.bookings.unshift(booking);saveStore();
+  renderMyOrders();
+  document.getElementById('bkNote').value='';
+  document.getElementById('bkAmount').value='';
+  document.getElementById('bkService').value='';
+  document.getElementById('bkPackage').value='';
+  if(withPayment){
+    openPaymentModal(booking);
+  } else {
+    showToast('✅ تم إرسال حجزك بنجاح! سنتواصل معك قريباً');
+  }
+}
+
+// ============ PAYMOB PAYMENT ============
+const PAYMOB_API_KEY = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJjbGFzcyI6Ik1lcmNoYW50IiwicHJvZmlsZV9wayI6MTEyOTEwOCwibmFtZSI6ImluaXRpYWwifQ.ccYAwpD2DdWgyhWV0fNXjuyqqC89K4rjonwg14AXQQtofwEHhhywYi8BSLY1XtwsSmbrELtuC3BE4bDwU4_KiA';
+const PAYMOB_SITE_URL = 'https://gebrela921-sudo.github.io/Flash-Media-/';
+const PAYMOB_PUBLIC_KEY = 'egy_pk_test_z0gP0qKFJgvC73k9rAf8Y3IvBZE9eFEv';
+// Integration IDs — fill from your Paymob dashboard
+// Settings → Payment Integrations → Card Online = card_integration_id, Wallet = wallet_integration_id
+const PAYMOB_CARD_INTEGRATION_ID  = '5707734';   // Visa
+const PAYMOB_WALLET_INTEGRATION_ID = '5707736';   // Mobile Wallets (Cash)
+const PAYMOB_IFRAME_ID = '1050172';               // iFrame ID
+
+let currentPayment = null; // { booking, method }
+
+function openPaymentModal(booking){
+  currentPayment = { booking };
+  // Reset steps
+  showPayStep(1);
+  document.getElementById('paymentErr').style.display='none';
+  document.getElementById('payProceedBtn').disabled=false;
+  selectPayMethod('card');
+  // Build summary
+  document.getElementById('paymentSummary').innerHTML=`
+    <div class="payment-summary-row"><span class="payment-summary-label">الخدمة</span><span class="payment-summary-val">${booking.service||booking.pkg||'خدمة Flash Media'}</span></div>
+    <div class="payment-summary-row"><span class="payment-summary-label">العميل</span><span class="payment-summary-val">${booking.name}</span></div>
+    <div class="payment-summary-row"><span class="payment-summary-label">رقم الطلب</span><span class="payment-summary-val">#${booking.id}</span></div>
+    <div class="payment-summary-row"><span class="payment-summary-label">نسبة الدفع</span><span class="payment-summary-val" style="color:#00c864">100% — دفعة كاملة</span></div>
+    <div class="payment-summary-row"><span class="payment-summary-label">المبلغ الإجمالي</span><span class="payment-summary-val payment-total">${booking.amount.toLocaleString('ar-EG')} جنيه</span></div>`;
+  document.getElementById('paymentModal').classList.add('show');
+}
+
+function closePayment(){
+  document.getElementById('paymentModal').classList.remove('show');
+  document.getElementById('paymobIframe').src='';
+}
+
+function showPayStep(n){
+  [1,2,3,4].forEach(i=>document.getElementById('payStep'+i).style.display= i===n?'block':'none');
+}
+
+function selectPayMethod(method){
+  currentPayment.method=method;
+  document.getElementById('pmCard').classList.toggle('selected',method==='card');
+  document.getElementById('pmWallet').classList.toggle('selected',method==='wallet');
+  document.getElementById('walletPhoneWrap').style.display= method==='wallet'?'block':'none';
+}
+
+// ============ PAYMOB POST — tries direct then proxies ============
+async function paymobPost(endpoint, body){
+  const url = 'https://accept.paymob.com' + endpoint;
+  const bodyStr = JSON.stringify(body);
+  const headers = {'Content-Type':'application/json'};
+
+  // 1) Try direct (works when domain is whitelisted in Paymob dashboard)
+  try {
+    const r = await fetch(url, {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Origin': PAYMOB_SITE_URL
+      },
+      body:bodyStr
+    });
+    const t = await r.text();
+    const j = JSON.parse(t);
+    if(r.ok) return j;
+    if(j && j.detail) throw new Error(j.detail);
+  } catch(e) {
+    if(e.message && !e.message.includes('fetch')) throw e;
+  }
+
+  // 2) Try corsproxy.io
+  try {
+    const r = await fetch('https://corsproxy.io/?' + encodeURIComponent(url), {method:'POST', headers, body:bodyStr});
+    const t = await r.text();
+    return JSON.parse(t);
+  } catch(e2) {}
+
+  // 3) Try thingproxy
+  try {
+    const r = await fetch('https://thingproxy.freeboard.io/fetch/' + url, {method:'POST', headers, body:bodyStr});
+    const t = await r.text();
+    return JSON.parse(t);
+  } catch(e3) {}
+
+  throw new Error('تعذّر الاتصال بـ Paymob.\n\nالحل: افتح لوحة Paymob → Settings → Security → أضف domain موقعك في "Allowed Origins"');
+}
+
+async function proceedPayment(){
+  const btn=document.getElementById('payProceedBtn');
+  const errBox=document.getElementById('paymentErr');
+  errBox.style.display='none';
+  const {booking, method}=currentPayment;
+
+  // 100% of amount — no deductions
+  const amountCents = Math.round(booking.amount * 100);
+
+  if(method==='wallet'){
+    const wp=document.getElementById('walletPhone').value.trim();
+    if(!wp||wp.length<11){errBox.textContent='⚠️ أدخل رقم المحفظة بشكل صحيح (11 رقم)';errBox.style.display='block';return;}
+    currentPayment.walletPhone=wp;
+  }
+
+  btn.disabled=true;
+  showPayStep(2);
+
+  try {
+    // ─── Step 1: Auth token ───────────────────────────────────
+    document.getElementById('payLoadingMsg').textContent='جاري التحقق من الهوية...';
+    const authData = await paymobPost('/api/auth/tokens', {api_key: PAYMOB_API_KEY});
+    if(!authData.token) throw new Error('فشل التحقق — تحقق من الـ API Key');
+    const authToken = authData.token;
+
+    // ─── Step 2: Register order ───────────────────────────────
+    document.getElementById('payLoadingMsg').textContent='جاري تسجيل الطلب...';
+    const orderData = await paymobPost('/api/ecommerce/orders', {
+      auth_token: authToken,
+      delivery_needed: 'false',
+      amount_cents: String(amountCents),
+      currency: 'EGP',
+      merchant_order_id: String(booking.id)+'_'+Date.now(),
+      items:[{
+        name: booking.service || booking.pkg || 'Flash Media Service',
+        amount_cents: String(amountCents),
+        description: 'خدمة إعلانية - Flash Media',
+        quantity: '1'
+      }]
+    });
+    if(!orderData.id) throw new Error('فشل تسجيل الطلب: '+(orderData.message||JSON.stringify(orderData)));
+    const paymobOrderId = orderData.id;
+
+    // ─── Step 3: Payment key ──────────────────────────────────
+    document.getElementById('payLoadingMsg').textContent='جاري تجهيز بوابة الدفع...';
+    const nameParts = (booking.name||'Client Flash').trim().split(' ');
+    const firstName = nameParts[0]||'Client';
+    const lastName  = nameParts.slice(1).join(' ')||'User';
+    const pkeyData = await paymobPost('/api/acceptance/payment_keys', {
+      auth_token: authToken,
+      amount_cents: String(amountCents),
+      expiration: 3600,
+      order_id: paymobOrderId,
+      currency: 'EGP',
+      integration_id: method==='wallet' ? parseInt(PAYMOB_WALLET_INTEGRATION_ID) : parseInt(PAYMOB_CARD_INTEGRATION_ID),
+      billing_data:{
+        email:       booking.email||'client@flashmedia.com',
+        first_name:  firstName,
+        last_name:   lastName,
+        phone_number:booking.phone||'01000000000',
+        apartment:'NA', building:'NA', floor:'NA', street:'Cairo',
+        city:'Cairo', country:'EG', state:'Cairo',
+        postal_code:'11511', shipping_method:'NA'
+      }
+    });
+    if(!pkeyData.token) throw new Error('فشل الحصول على مفتاح الدفع: '+(pkeyData.message||''));
+    const paymentToken = pkeyData.token;
+
+    // ─── Save paymob order id ─────────────────────────────────
+    const bIdx = store.bookings.findIndex(b=>b.id===booking.id);
+    if(bIdx>-1){ store.bookings[bIdx].paymobOrderId=paymobOrderId; saveStore(); }
+
+    if(method==='wallet'){
+      // ─── Wallet: initiate redirect ────────────────────────
+      document.getElementById('payLoadingMsg').textContent='جاري تجهيز المحفظة...';
+      const walletData = await paymobPost('/api/acceptance/payments/pay',{
+        source:{ identifier: currentPayment.walletPhone, subtype:'WALLET' },
+        payment_token: paymentToken
+      });
+      if(walletData.redirect_url){
+        window.open(walletData.redirect_url,'_blank');
+        showPayStep(4);
+        document.getElementById('paySuccessDetails').innerHTML=`
+          <div>📋 رقم الطلب: <strong>#${booking.id}</strong></div>
+          <div>💰 المبلغ الكامل: <strong>${booking.amount.toLocaleString('ar-EG')} جنيه</strong></div>
+          <div>📱 تم إرسال طلب الدفع لمحفظتك — أكمل من التطبيق</div>`;
+      } else {
+        throw new Error(walletData.detail||walletData.message||'فشل تجهيز المحفظة الإلكترونية');
+      }
+    } else {
+      // ─── Card: open iframe ────────────────────────────────
+      const iframeUrl=`https://accept.paymob.com/api/acceptance/iframes/${PAYMOB_IFRAME_ID}?payment_token=${paymentToken}`;
+      document.getElementById('paymobIframe').src=iframeUrl;
+      showPayStep(3);
+      window.addEventListener('message', handlePaymobMessage, {once:true});
+    }
+
+  } catch(err){
+    showPayStep(1);
+    btn.disabled=false;
+    errBox.textContent='❌ '+err.message;
+    errBox.style.display='block';
+  }
+}
+
+function handlePaymobMessage(e){
+  // Paymob sends postMessage on payment completion
+  try{
+    const data = typeof e.data==='string'? JSON.parse(e.data) : e.data;
+    if(data && (data.success===true || data.txn_response_code==='APPROVED')){
+      const bIdx=store.bookings.findIndex(b=>b.id===currentPayment.booking.id);
+      if(bIdx>-1){store.bookings[bIdx].status='مدفوع';store.bookings[bIdx].paid=true;saveStore();}
+      renderMyOrders();
+      showPayStep(4);
+      document.getElementById('paySuccessDetails').innerHTML=`
+        <div>📋 رقم الطلب: <strong>#${currentPayment.booking.id}</strong></div>
+        <div>💰 المبلغ: <strong>${currentPayment.booking.amount.toLocaleString('ar-EG')} جنيه</strong></div>
+        <div>✅ الحالة: <strong style="color:#00c864">مدفوع</strong></div>`;
+      showToast('✅ تم الدفع بنجاح!');
+    }
+  }catch(err){}
+}
+
+// ============ MY ORDERS ============
+function renderMyOrders(){
+  const sec=document.getElementById('myOrders');
+  if(!currentUser){sec.style.display='none';return;}
+  const myB=store.bookings.filter(b=>b.userId===currentUser.id);
+  if(!myB.length){sec.style.display='none';return;}
+  sec.style.display='block';
+  const sc={'جديد':'badge-new','قيد التنفيذ':'badge-pending','مكتمل':'badge-done','ملغي':'badge-pending','مدفوع':'badge-done','في انتظار الدفع':'badge-pending'};
+  document.getElementById('ordersList').innerHTML=myB.map(b=>`
+    <div class="order-row">
+      <div class="order-info">
+        <div class="order-service">${b.service||'طلب عام'} ${b.pkg?'- '+b.pkg:''}</div>
+        <div class="order-meta">📅 ${b.date}${b.amount?' · 💰 '+b.amount.toLocaleString('ar-EG')+' جنيه':''}${b.note?' · '+b.note.substring(0,40):''}${b.note&&b.note.length>40?'...':''}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        ${b.amount&&!b.paid?`<button onclick="openPaymentModal(store.bookings.find(x=>x.id===${b.id}))" style="padding:7px 14px;background:linear-gradient(135deg,#00b96b,#007a45);border:none;border-radius:8px;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:12px;cursor:pointer">💳 ادفع الآن</button>`:''}
+        <span class="badge ${b.paid?'badge-done':sc[b.status]||'badge-new'}">${b.paid?'✅ مدفوع':b.status}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ============ SERVICES ============
+function renderServices(){
+  document.getElementById('servicesGrid').innerHTML=store.services.map(s=>`
+    <div class="service-card">
+      <div class="service-icon">${s.icon}</div>
+      <div class="service-name">${s.name}</div>
+      <div class="service-desc">${s.desc}</div>
+      <div class="service-price"><div class="price-label">السعر</div><div class="price-val">${s.price}</div></div>
+      <button class="service-order-btn" onclick="orderService('${s.name}')">اطلب هذه الخدمة ←</button>
+    </div>`).join('');
+}
+function orderService(name){
+  if(!currentUser){openAuth('login',name,null);}
+  else{smoothScroll('booking');setTimeout(()=>{const s=document.getElementById('bkService');if(s)s.value=name;},500);}
+}
+
+// ============ PACKAGES ============
+function renderPackages(){
+  document.getElementById('packagesGrid').innerHTML=store.packages.map(p=>`
+    <div class="pkg-card ${p.featured?'featured':''}">
+      ${p.featured?'<div class="pkg-badge">⭐ الأكثر طلباً</div>':''}
+      <div class="pkg-name">${p.name}</div>
+      <div class="pkg-price">${p.price} <span style="font-size:1rem;color:var(--gray)">جنيه</span></div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+      <button class="pkg-btn ${p.featured?'gold':'outline'}" onclick="orderPackage('${p.name}')">احجز الآن</button>
+    </div>`).join('');
+}
+function orderPackage(name){
+  if(!currentUser){openAuth('login',null,name);}
+  else{smoothScroll('booking');setTimeout(()=>{const s=document.getElementById('bkPackage');if(s)s.value=name;},500);}
+}
+
+// ============ CONTACT ============
+function submitContact(){
+  const name=document.getElementById('ctName').value.trim();
+  const phone=document.getElementById('ctPhone').value.trim();
+  const msg=document.getElementById('ctMsg').value.trim();
+  if(!name||!phone){showToast('⚠️ يرجى ملء الاسم ورقم الهاتف');return;}
+  store.messages.unshift({id:store.nextId++,name,phone,msg,date:new Date().toLocaleDateString('ar-EG')});
+  saveStore();showToast('✅ تم إرسال رسالتك! سنرد عليك قريباً');
+  ['ctName','ctPhone','ctMsg'].forEach(id=>document.getElementById(id).value='');
+}
+
+// ============ ADMIN ============
+function openDashboard(){document.getElementById('adminModal').style.display='block';renderAdmin();}
+function closeAdmin(){document.getElementById('adminModal').style.display='none';}
+
+function renderAdmin(){
+  document.getElementById('adminStats').innerHTML=`
+    <div class="stat-card"><div class="num">${store.bookings.length}</div><div class="lbl">إجمالي الحجوزات</div></div>
+    <div class="stat-card"><div class="num">${store.bookings.filter(b=>b.status==='جديد').length}</div><div class="lbl">حجوزات جديدة</div></div>
+    <div class="stat-card"><div class="num">${store.messages.length}</div><div class="lbl">الرسائل</div></div>
+    <div class="stat-card"><div class="num">${store.users.filter(u=>u.role!=='admin').length}</div><div class="lbl">العملاء</div></div>`;
+
+  // Bookings
+  document.getElementById('bookingsTbody').innerHTML=store.bookings.length
+    ?store.bookings.map((b,i)=>`<tr>
+        <td>${b.id}</td><td>${b.name}</td><td dir="ltr">${b.phone}</td>
+        <td>${b.service||'—'}</td><td>${b.pkg||'—'}</td>
+        <td>${b.amount?b.amount.toLocaleString('ar-EG')+' جنيه':'—'}</td>
+        <td><span class="badge ${b.paid?'badge-done':'badge-pending'}">${b.paid?'✅ مدفوع':'⏳ غير مدفوع'}</span></td>
+        <td><span class="badge badge-${b.status==='جديد'?'new':b.status==='مكتمل'||b.status==='مدفوع'?'done':'pending'}">${b.status}</span></td>
+        <td>
+          <button class="action-btn edit" onclick="changeStatus(${i})">تغيير الحالة</button>
+          <button class="action-btn delete" onclick="confirmDeleteBooking(${i})">حذف</button>
+        </td>
+      </tr>`).join('')
+    :'<tr><td colspan="9" style="text-align:center;color:var(--gray);padding:30px">لا توجد حجوزات بعد</td></tr>';
+
+  // Messages
+  document.getElementById('messagesTbody').innerHTML=store.messages.length
+    ?store.messages.map((m,i)=>`<tr>
+        <td>${m.id}</td><td>${m.name}</td><td dir="ltr">${m.phone}</td>
+        <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.msg}</td>
+        <td><button class="action-btn delete" onclick="confirmDeleteMessage(${i})">حذف</button></td>
+      </tr>`).join('')
+    :'<tr><td colspan="5" style="text-align:center;color:var(--gray);padding:30px">لا توجد رسائل بعد</td></tr>';
+
+  // Users
+  const clients=store.users.filter(u=>u.role!=='admin');
+  document.getElementById('usersTbody').innerHTML=clients.length
+    ?clients.map((u,i)=>`<tr>
+        <td>${u.id}</td><td>${u.name}</td><td>${u.email}</td>
+        <td dir="ltr">${u.phone||'—'}</td><td>${u.date}</td>
+        <td>
+          <button class="action-btn blue" onclick="openEditUser(${u.id})">✏️ تعديل</button>
+          <button class="action-btn delete" onclick="confirmDeleteUser(${u.id})">حذف</button>
+        </td>
+      </tr>`).join('')
+    :'<tr><td colspan="6" style="text-align:center;color:var(--gray);padding:30px">لا يوجد عملاء بعد</td></tr>';
+
+  // Services
+  document.getElementById('servicesTbody').innerHTML=store.services.map((s,i)=>`
+    <tr><td>${s.icon}</td><td>${s.name}</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--gray)">${s.desc||'—'}</td><td>${s.price}</td>
+    <td>
+      <button class="action-btn blue" onclick="openEditItem('service',${i})">✏️ تعديل</button>
+      <button class="action-btn delete" onclick="confirmDeleteService(${i})">حذف</button>
+    </td></tr>`).join('');
+
+  // Packages
+  document.getElementById('packagesTbody').innerHTML=store.packages.map((p,i)=>`
+    <tr><td>${p.name}</td><td>${p.price} جنيه</td>
+    <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--gray)">${(p.features||[]).join('، ')}</td>
+    <td>${p.featured?'⭐ نعم':'لا'}</td>
+    <td>
+      <button class="action-btn blue" onclick="openEditItem('package',${i})">✏️ تعديل</button>
+      <button class="action-btn delete" onclick="confirmDeletePackage(${i})">حذف</button>
+    </td></tr>`).join('');
+}
+
+function switchTab(e,name){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+}
+
+// Change booking status (no confirm needed — just toggling)
+function changeStatus(i){
+  const s=['جديد','قيد التنفيذ','مكتمل','ملغي'];
+  const c=store.bookings[i].status;
+  store.bookings[i].status=s[(s.indexOf(c)+1)%s.length];
+  saveStore();renderAdmin();renderMyOrders();
+}
+
+// ============ CONFIRM DELETES ============
+function confirmDeleteBooking(i){
+  const b=store.bookings[i];
+  showConfirm({icon:'🗑️',title:'حذف الحجز',msg:`هل تريد حذف حجز "${b.name}" للخدمة "${b.service||'عامة'}"؟ لا يمكن التراجع عن هذا الإجراء.`,btnText:'حذف',btnClass:'danger',
+    onConfirm:()=>{store.bookings.splice(i,1);saveStore();renderAdmin();renderMyOrders();showToast('🗑️ تم حذف الحجز');}});
+}
+function confirmDeleteMessage(i){
+  const m=store.messages[i];
+  showConfirm({icon:'🗑️',title:'حذف الرسالة',msg:`هل تريد حذف رسالة "${m.name}"؟`,btnText:'حذف',btnClass:'danger',
+    onConfirm:()=>{store.messages.splice(i,1);saveStore();renderAdmin();showToast('🗑️ تم حذف الرسالة');}});
+}
+function confirmDeleteUser(uid){
+  const u=store.users.find(x=>x.id===uid);
+  showConfirm({icon:'👤',title:'حذف العميل',msg:`هل تريد حذف حساب "${u.name}" (${u.email})؟ سيتم حذف جميع بياناته ولا يمكن التراجع.`,btnText:'حذف الحساب',btnClass:'danger',
+    onConfirm:()=>{store.users=store.users.filter(x=>x.id!==uid);saveStore();renderAdmin();showToast('🗑️ تم حذف حساب العميل');}});
+}
+function confirmDeleteService(i){
+  const s=store.services[i];
+  showConfirm({icon:'🛠️',title:'حذف الخدمة',msg:`هل تريد حذف خدمة "${s.name}"؟`,btnText:'حذف',btnClass:'danger',
+    onConfirm:()=>{store.services.splice(i,1);saveStore();renderServices();renderAdmin();showToast('🗑️ تم حذف الخدمة');}});
+}
+function confirmDeletePackage(i){
+  const p=store.packages[i];
+  showConfirm({icon:'📦',title:'حذف الباقة',msg:`هل تريد حذف باقة "${p.name}" بسعر ${p.price} جنيه؟`,btnText:'حذف',btnClass:'danger',
+    onConfirm:()=>{store.packages.splice(i,1);saveStore();renderPackages();renderAdmin();showToast('🗑️ تم حذف الباقة');}});
+}
+
+// ============ EDIT USER ============
+function openEditUser(uid){
+  const u=store.users.find(x=>x.id===uid);
+  if(!u)return;
+  document.getElementById('editUserId').value=uid;
+  document.getElementById('euName').value=u.name;
+  document.getElementById('euEmail').value=u.email;
+  document.getElementById('euPhone').value=u.phone||'';
+  document.getElementById('euPass').value='';
+  document.getElementById('editSuccess').style.display='none';
+  document.getElementById('editErrMsg').style.display='none';
+  document.getElementById('editUserModal').classList.add('show');
+}
+function closeEditUser(){document.getElementById('editUserModal').classList.remove('show');}
+function saveEditUser(){
+  const uid=parseInt(document.getElementById('editUserId').value);
+  const name=document.getElementById('euName').value.trim();
+  const email=document.getElementById('euEmail').value.trim();
+  const phone=document.getElementById('euPhone').value.trim();
+  const pass=document.getElementById('euPass').value;
+  const errEl=document.getElementById('editErrMsg');
+  const okEl=document.getElementById('editSuccess');
+  errEl.style.display='none';okEl.style.display='none';
+  if(!name||!email){errEl.textContent='⚠️ الاسم والبريد الإلكتروني مطلوبان';errEl.style.display='block';return;}
+  // check email conflict
+  const conflict=store.users.find(x=>x.email===email&&x.id!==uid);
+  if(conflict){errEl.textContent='❌ هذا البريد الإلكتروني مستخدم من حساب آخر';errEl.style.display='block';return;}
+  const u=store.users.find(x=>x.id===uid);
+  u.name=name;u.email=email;u.phone=phone;
+  if(pass.length>0){
+    if(pass.length<6){errEl.textContent='⚠️ كلمة المرور الجديدة يجب أن تكون 6 أحرف على الأقل';errEl.style.display='block';return;}
+    u.pass=pass;
+  }
+  saveStore();renderAdmin();
+  okEl.style.display='block';
+  showToast('✅ تم تحديث بيانات العميل بنجاح');
+  setTimeout(closeEditUser,1600);
+}
+
+// ============ EDIT SERVICE / PACKAGE ============
+function openEditItem(type, idx){
+  const el=id=>document.getElementById(id);
+  el('editItemType').value=type;
+  el('editItemIdx').value=idx;
+  el('editItemSuccess').style.display='none';
+  el('editItemErr').style.display='none';
+  el('editServiceFields').style.display= type==='service'?'block':'none';
+  el('editPackageFields').style.display= type==='package'?'block':'none';
+  if(type==='service'){
+    const s=store.services[idx];
+    el('editItemIcon').textContent='🛠️';
+    el('editItemTitle').textContent='تعديل الخدمة';
+    el('editItemSub').textContent='عدّل بيانات الخدمة ثم اضغط حفظ';
+    el('eiSvcIcon').value=s.icon||'';
+    el('eiSvcName').value=s.name||'';
+    el('eiSvcPrice').value=s.price||'';
+    el('eiSvcDesc').value=s.desc||'';
+  } else {
+    const p=store.packages[idx];
+    el('editItemIcon').textContent='📦';
+    el('editItemTitle').textContent='تعديل الباقة';
+    el('editItemSub').textContent='عدّل بيانات الباقة ثم اضغط حفظ';
+    el('eiPkgName').value=p.name||'';
+    el('eiPkgPrice').value=p.price||'';
+    el('eiPkgFeatures').value=(p.features||[]).join(', ');
+    el('eiPkgFeatured').value=p.featured?'1':'0';
+  }
+  el('editItemModal').classList.add('show');
+}
+function closeEditItem(){document.getElementById('editItemModal').classList.remove('show');}
+function saveEditItem(){
+  const el=id=>document.getElementById(id);
+  const type=el('editItemType').value;
+  const idx=parseInt(el('editItemIdx').value);
+  el('editItemSuccess').style.display='none';
+  el('editItemErr').style.display='none';
+  if(type==='service'){
+    const name=el('eiSvcName').value.trim();
+    if(!name){el('editItemErr').textContent='⚠️ اسم الخدمة مطلوب';el('editItemErr').style.display='block';return;}
+    store.services[idx].icon=el('eiSvcIcon').value.trim()||'⚡';
+    store.services[idx].name=name;
+    store.services[idx].price=el('eiSvcPrice').value.trim();
+    store.services[idx].desc=el('eiSvcDesc').value.trim();
+  } else {
+    const name=el('eiPkgName').value.trim();
+    const price=el('eiPkgPrice').value.trim();
+    if(!name||!price){el('editItemErr').textContent='⚠️ اسم الباقة والسعر مطلوبان';el('editItemErr').style.display='block';return;}
+    store.packages[idx].name=name;
+    store.packages[idx].price=price;
+    store.packages[idx].features=el('eiPkgFeatures').value.split(',').map(f=>f.trim()).filter(Boolean);
+    store.packages[idx].featured=el('eiPkgFeatured').value==='1';
+  }
+  saveStore();
+  renderServices();
+  renderPackages();
+  renderAdmin();
+  el('editItemSuccess').style.display='block';
+  showToast('✅ تم حفظ التعديلات بنجاح');
+  setTimeout(closeEditItem,1500);
+}
+
+// ============ ADD SERVICE / PACKAGE ============
+function addService(){
+  const n=document.getElementById('svcName').value.trim();
+  const pr=document.getElementById('svcPrice').value.trim();
+  const ic=document.getElementById('svcIcon').value.trim()||'⚡';
+  const d=document.getElementById('svcDesc').value.trim();
+  if(!n){showToast('⚠️ أدخل اسم الخدمة');return;}
+  store.services.push({id:store.nextId++,icon:ic,name:n,desc:d,price:pr});
+  saveStore();renderServices();renderAdmin();
+  ['svcName','svcPrice','svcIcon','svcDesc'].forEach(id=>document.getElementById(id).value='');
+  showToast('✅ تمت إضافة الخدمة');
+}
+function addPackage(){
+  const n=document.getElementById('pkgName').value.trim();
+  const pr=document.getElementById('pkgPrice').value.trim();
+  const fs=document.getElementById('pkgFeatures').value.trim();
+  const ft=document.getElementById('pkgFeatured').value==='1';
+  if(!n||!pr){showToast('⚠️ أدخل اسم الباقة والسعر');return;}
+  store.packages.push({id:store.nextId++,name:n,price:pr,features:fs.split(',').map(f=>f.trim()).filter(Boolean),featured:ft});
+  saveStore();renderPackages();renderAdmin();
+  ['pkgName','pkgPrice','pkgFeatures'].forEach(id=>document.getElementById(id).value='');
+  showToast('✅ تمت إضافة الباقة');
+}
+
+// Enter keys
+document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+document.getElementById('regPass').addEventListener('keydown',e=>{if(e.key==='Enter')doRegister();});
+
+// ============ FIX STACKING CONTEXT ============
+// Move overlay modals to document.body so they're never trapped
+(function(){
+  ['editUserModal','editItemModal','paymentModal'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el && el.parentNode!==document.body) document.body.appendChild(el);
+  });
+})();
+
+// ============ INIT ============
+renderServices();
+renderPackages();
+renderBookingSection();
+updateNavUI();
+</script>
+</body>
+</html>
